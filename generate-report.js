@@ -32,6 +32,14 @@
       cliArguments = cliArguments + ' --project "' + config.tsconfig + '"';
     }
 
+    console.info(funkyLogger.color('cyan', 'Cleaning up the old data..'));
+    if (fs.existsSync(config.jsonReport)) {
+      fs.unlinkSync(config.jsonReport);
+    }
+    if (fs.existsSync(config.finalReport)) {
+      fs.unlinkSync(config.finalReport);
+    }
+
     console.info(funkyLogger.color('cyan', 'Generating TSlint report.'));
     exec(basePath + '/node_modules/tslint/bin/tslint' + cliArguments, (error, stdout, stderr) => {
       if (error) {
