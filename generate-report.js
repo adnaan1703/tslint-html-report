@@ -4,11 +4,11 @@
   'use strict';
 
   const handlebars = require('handlebars');
-  const _ = require('lodash');
+  const filter = require('lodash.filter');
   const fs = require('fs');
   const funkyLogger = require('./funky-logger');
-  const npmRun = require('npm-run');
   const path = require('path');
+  const { exec } = require('child_process');
 
   const basePath = path.join(__dirname, '..', '..');
 
@@ -33,7 +33,7 @@
     }
 
     console.info(funkyLogger.color('cyan', 'Generating TSlint report.'));
-    const result = npmRun.exec('tslint' + cliArguments, { cwd: __dirname, maxBuffer: Infinity }, (error, stdout, stderr) => {
+    exec(basePath + '/node_modules/tslint/bin/tslint' + cliArguments, (error, stdout, stderr) => {
       if (error) {
         console.error(error);
       }
@@ -66,7 +66,7 @@
           fileListWithErrorCountArray.push({
             name: key,
             count: fileListWithErrorCount[key],
-            details: _.filter(rawData, { name: key })
+            details: filter(rawData, { name: key })
           });
         });
         console.info(funkyLogger.color('green', 'Data mapping complete.'));

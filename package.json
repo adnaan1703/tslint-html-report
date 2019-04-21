@@ -1,8 +1,11 @@
 {
   "name": "tslint-html-report",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "A small module which runs TSLint on the given source glob and generates a simple HTML report.",
   "main": "index.js",
+  "bin": {
+    "tslint-html-report": "bin/report-process.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,11 +32,7 @@
   },
   "homepage": "https://github.com/SpitfireSatya/tslint-html-report#readme",
   "dependencies": {
-    "handlebars": "^4.0.11",
-    "lodash": "^4.17.4",
-    "npm-run": "^5.0.1",
-    "tslint": "^5.12.1",
-    "typescript": "^2.9.2",
-    "tsutils": "^3.0.0"
+    "handlebars": "4.0.11",
+    "lodash.filter": "4.6.0"
   }
 }
